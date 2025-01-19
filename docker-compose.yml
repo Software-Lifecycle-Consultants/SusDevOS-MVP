@@ -1,0 +1,19 @@
+services:
+  db:
+    image: postgres:15
+    container_name: susdevos_db
+    restart: always
+    environment:
+      POSTGRES_DB: ${DATABASE_NAME:-susdevos_db}
+      POSTGRES_USER: ${DATABASE_USER:-susdevos_user}
+      POSTGRES_PASSWORD: ${DATABASE_PASSWORD:-susdevos_password}
+    ports:
+      - "${DATABASE_PORT:-5432}:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      # - ./init-scripts:/docker-entrypoint-initdb.d
+
+volumes:
+  postgres_data: 
+
+ 
